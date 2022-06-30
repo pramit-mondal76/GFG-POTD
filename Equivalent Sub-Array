@@ -1,0 +1,27 @@
+class Solution
+{
+public:
+    int countDistinctSubarray(int arr[], int n)
+    {
+        set<int>st(arr,arr+n);
+        int s=st.size();
+        int ans=0,d=0;
+        unordered_map<int,int>m;
+        for(int start=0,end=0;end<n;end++)
+        {
+            m[arr[end]]++;
+            if(m[arr[end]]==1)d++;
+            if(d==s)
+            {
+                while(d==s)
+                {
+                    ans +=n-end;
+                    m[arr[start]]--;
+                    if(m[arr[start]]==0)d--;
+                    start++;
+                }
+            }
+        }
+        return ans;
+    }
+};
