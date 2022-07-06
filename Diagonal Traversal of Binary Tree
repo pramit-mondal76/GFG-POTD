@@ -1,0 +1,31 @@
+void pre(Node* root,map<int,vector<int>> &mp,int level)
+{
+    if(root == NULL)
+    {
+        return;
+    }
+    mp[level].push_back(root->data);
+    pre(root->left,mp,level+1);
+    pre(root->right,mp,level);
+}
+
+vector<int> diagonal(Node *root)
+{
+    map<int,vector<int>>mp;
+    pre(root,mp,0);
+    vector<int>ans;
+    for(auto i:mp)
+    {
+        for(auto j:i.second) ans.push_back(j);
+    }
+    return ans;
+   // your code here
+}
+
+
+
+
+
+
+
+
